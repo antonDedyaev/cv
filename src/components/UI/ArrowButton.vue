@@ -1,0 +1,114 @@
+<template>
+  <div class="arrow-btn">
+    <button class="arrow-btn__content">
+      <span class="circle" aria-hidden="true">
+        <span class="icon arrow"></span>
+      </span>
+      <span class="button-text">{{ text }}</span>
+    </button>
+  </div>
+</template>
+
+<script setup lang="ts">
+interface IArrowButtonProps {
+  text: string;
+}
+
+defineProps<IArrowButtonProps>()
+</script>
+
+<style scoped lang="scss">
+.arrow-btn {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+
+  &__content {
+    width: 12rem;
+    height: auto;
+
+    .circle {
+      @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+      position: relative;
+      display: block;
+      margin: 0;
+      width: 3rem;
+      height: 3rem;
+      background: $orange;
+      border-radius: 1.625rem;
+
+      .icon {
+        @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: $white-base;
+
+        &.arrow {
+          @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+          left: 0.625rem;
+          width: 1.125rem;
+          height: 0.125rem;
+          background: none;
+
+          &::before {
+            position: absolute;
+            content: '';
+            top: -0.25rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid $white-base;
+            border-right: 0.125rem solid $white-base;
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+
+    .button-text {
+      @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.9rem 0;
+      margin: 0 0 0 2rem;
+      color: $gray;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  &:hover {
+    .circle {
+      width: 100%;
+
+      .icon {
+        &.arrow {
+          background: $white-base;
+          transform: translate(1rem, 0);
+        }
+      }
+    }
+
+    .button-text {
+      color: $white-base;
+    }
+  }
+}
+
+</style>

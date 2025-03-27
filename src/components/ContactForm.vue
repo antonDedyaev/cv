@@ -110,17 +110,19 @@ const rules = reactive({
   }
 })
 
-const options = reactive({
-  autoTouch: true,
-});
-const { result } = useValidate(mailForm, rules, options);
 
 const isButtonClicked = ref(false)
 const isButtonShaking = ref(false)
 
+const options = reactive({
+  autoTest: true,
+});
+
+const { result } = useValidate(mailForm, rules, options);
 const submitMail = () => {
   result.value.$test();
   if (result.value.$invalid) {
+    options.autoTest = true
     isButtonClicked.value = false
     isButtonShaking.value = true
     setTimeout(() => {
@@ -135,6 +137,7 @@ const submitMail = () => {
         'Y3ErrbNfUa6cikmEv',
       )
     }
+    options.autoTest = false
     isButtonClicked.value = true
     setTimeout(() => {
       isButtonClicked.value = false
@@ -145,6 +148,10 @@ const submitMail = () => {
     mailForm.value = structuredClone(initialForm)
     result.value.$reset()
   }
+
+  setTimeout(() => {
+    options.autoTest = true
+  }, 100)
 }
 
 </script>

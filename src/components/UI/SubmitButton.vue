@@ -1,38 +1,20 @@
 <template>
   <button
     class="button"
-    :class="{ button__circle: isButtonClicked, shaky: isButtonShaking }"
-    @click="triggerSubmit"
+    :class="{ button__circle: isSubmitValid, shaky: isSubmitInvalid }"
   >
-    <IconCheck v-if="isButtonClicked" />
+    <IconCheck v-if="isSubmitValid" />
     <span v-else>Отправить</span>
   </button>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
 import IconCheck from '@/components/icons/IconCheck.vue'
 interface ISubmitButtonProps {
-  isSubmitAllowed: boolean;
+  isSubmitValid: boolean;
+  isSubmitInvalid: boolean;
 }
 
-const props = defineProps<ISubmitButtonProps>()
-
-const isButtonClicked = ref(false)
-const isButtonShaking = ref(false)
-
-const triggerSubmit = () => {
-  if (!props.isSubmitAllowed) {
-    isButtonShaking.value = true
-    setTimeout(() => {
-      isButtonShaking.value = false
-    }, 800)
-    return
-  }
-  isButtonClicked.value = true
-  setTimeout(() => {
-    isButtonClicked.value = false
-  }, 1500)
-}
+defineProps<ISubmitButtonProps>()
 
 </script>
 

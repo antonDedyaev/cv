@@ -7,7 +7,7 @@
       <SkillBar title="HTML" :level="90" />
       <SkillBar title="CSS / SCSS" :level="90" />
       <SkillBar title="Vue" :level="90" />
-      <SkillBar title="Nuxt" :level="70" />
+      <SkillBar title="Nuxt" :level="80" />
       <SkillBar title="React" :level="70" />
     </div>
   </div>

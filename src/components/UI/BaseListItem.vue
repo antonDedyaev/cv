@@ -33,7 +33,7 @@
 import useBem from 'vue3-bem'
 import type ListRecord from '@/models/listRecord.model'
 import ColoredTag from '@/components/UI/ColoredTag.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import ExpandButton from '@/components/UI/ExpandButton.vue'
 
 const bem = useBem('list-item')
@@ -44,12 +44,40 @@ interface IListItemProps {
 
 const props = defineProps<IListItemProps>()
 
+const descriptionRef = ref<HTMLElement | null>(null);
 const isExpanded = ref(false)
 const isExpandable = ref(props.item.description.length > 1)
 
+const calculateMaxHeight = () => {
+  if (!descriptionRef.value) return
+
+  const title = descriptionRef.value.querySelector('h3')
+  const firstParagraph = descriptionRef.value.querySelector('p')
+
+  if (title && firstParagraph) {
+    const styles = window.getComputedStyle(descriptionRef.value)
+    const gap = parseFloat(styles.rowGap || styles.gap || '0')
+
+    const totalHeight =
+      title.offsetHeight +
+      firstParagraph.offsetHeight +
+      gap
+
+    descriptionRef.value.style.maxHeight = totalHeight + 'px'
+  }
+}
+
 const toggleExpandContent = () => {
+  calculateMaxHeight()
+
+  if (!isExpanded.value && descriptionRef.value) {
+    descriptionRef.value.style.maxHeight = descriptionRef.value.scrollHeight + 'px'
+  }
+
   isExpanded.value = !isExpanded.value
 }
+
+onMounted(() => calculateMaxHeight())
 
 </script>
 
@@ -100,7 +128,6 @@ const toggleExpandContent = () => {
   }
 
   .expandable {
-    max-height: 180px;
     overflow: hidden;
     transition: max-height 0.5s ease 0.05s;
 
@@ -110,7 +137,6 @@ const toggleExpandContent = () => {
   }
 
   .expanded {
-    max-height: 1000px;
     transition: max-height 0.7s ease 0.05s;
 
     p {

@@ -17,8 +17,8 @@ const bem = useBem('extra-skills')
       <SkillTag title="Pug" />
       <SkillTag title="Figma" />
       <SkillTag title="Storybook" />
-      <SkillTag title="Jira" />
-      <SkillTag title="Docker" />
+      <SkillTag title="Tailwind" />
+      <SkillTag title="Webpack" />
       <SkillTag title="Английский (C2)" />
       <SkillTag title="Немецкий (C1)" />
     </div>

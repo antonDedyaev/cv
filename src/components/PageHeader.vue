@@ -2,7 +2,7 @@
   <article :class="header()">
     <div :class="header('content')">
       <h1>Разрабатываю удобные и быстрые интерфейсы</h1>
-      <p>Frontend-разработчик с опытом более 3-х лет. Вдохновляюсь Frontend-разработкой, технологиями и спортом.</p>
+      <p>Frontend-разработчик с опытом более 4-х лет. Вдохновляюсь Frontend-разработкой, технологиями и спортом.</p>
       <ArrowButton
         text="Пообщаемся ?"
         @click="$emit('scroll-to-contacts')"

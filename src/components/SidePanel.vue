@@ -6,7 +6,7 @@
     <ExtraSkillsTab />
     <div :class="bem('download')">
       <MainButton
-        href="/Frontend_DedyaevAN.pdf"
+        href="/Dedyaev_Anton_Frontend_CV.pdf"
         download="Dedyaev_CV.pdf"
         shape="square"
       >

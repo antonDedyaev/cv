@@ -6,8 +6,8 @@
     <ExtraSkillsTab />
     <div :class="bem('download')">
       <MainButton
-        href="/Dedyaev_Anton_Frontend_CV.pdf"
-        download="Dedyaev_CV.pdf"
+        href="/Dedyaev_AN_Frontend_CV.pdf"
+        download="Dedyaev_AN_cv.pdf"
         shape="square"
       >
           Скачать мое резюме
